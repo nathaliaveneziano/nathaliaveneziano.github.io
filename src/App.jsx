@@ -1,5 +1,4 @@
 import {
-  Sidebar,
   Home,
   About,
   Services,
@@ -8,7 +7,8 @@ import {
   Testimonials,
   Blog,
   Contact,
-} from './components';
+} from './pages';
+import { Sidebar } from './components';
 import './App.css';
 
 function App() {
