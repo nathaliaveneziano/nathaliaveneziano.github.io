@@ -34,7 +34,10 @@ function Sidebar() {
           <ul className="nav__list">
             {links.map((link) => (
               <li className="nav__item" key={`nav-${link.title}`}>
-                <a href={link.url} className="nav__link">
+                <a
+                  href={link.url}
+                  className="nav__link"
+                  title={link.title.toUpperCase()}>
                   {link.icon}
                 </a>
               </li>

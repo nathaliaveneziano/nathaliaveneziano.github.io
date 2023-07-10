@@ -1,0 +1,44 @@
+.shapes {
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  overflow-x: hidden;
+}
+
+.shapes svg {
+  min-width: 1440px;
+  transform: rotate(180deg);
+  transition: 0.3s;
+}
+
+.shapes path:nth-child(1) {
+  opacity: 0.1;
+  transform: translate(0, 0px);
+  fill: var(--first-color);
+}
+
+.shapes path:nth-child(2) {
+  opacity: 0.2;
+  transform: translate(0, 50px);
+  fill: var(--first-color);
+}
+
+.shapes path:nth-child(3) {
+  opacity: 0.3;
+  transform: translate(0, 100px);
+  fill: var(--first-color);
+}
+
+.shapes path:nth-child(4) {
+  opacity: 0.4;
+  transform: translate(0, 150px);
+  fill: var(--first-color);
+}
+
+@media screen and (max-width: 1440px) {
+  .shapes svg {
+    left: 50%;
+    margin-left: -720px;
+  }
+}

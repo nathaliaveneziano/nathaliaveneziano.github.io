@@ -1,3 +1,5 @@
+import './logo.css';
+
 function Logo() {
   return (
     <div className="logo">
