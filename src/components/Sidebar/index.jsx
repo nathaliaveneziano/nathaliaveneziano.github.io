@@ -13,7 +13,7 @@ import './sidebar.css';
 
 function Sidebar() {
   const links = [
-    { url: '/', title: 'home', icon: <SlHome /> },
+    { url: '#home', title: 'home', icon: <SlHome /> },
     { url: '#about', title: 'about', icon: <SlUserFollowing /> },
     { url: '#services', title: 'services', icon: <SlBriefcase /> },
     { url: '#resume', title: 'resume', icon: <SlGraduation /> },
@@ -25,7 +25,7 @@ function Sidebar() {
 
   return (
     <aside className="aside">
-      <a href="/" className="nav__logo">
+      <a href="#home" className="nav__logo">
         <Logo />
       </a>
 
