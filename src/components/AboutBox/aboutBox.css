@@ -9,7 +9,7 @@
   column-gap: 1.5rem;
 }
 
-.about__icon {
+.about__box svg {
   font-size: var(--h1-font-size);
   color: #dedeea;
 }

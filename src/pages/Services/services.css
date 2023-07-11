@@ -52,7 +52,6 @@
   color: var(--text-color);
 }
 
-
 @media screen and (max-width: 767px) {
   .services__container {
     grid-template-columns: 12fr;

@@ -1,28 +1,8 @@
-import {
-  SlBriefcase,
-  SlBubble,
-  SlEqualizer,
-  SlGraduation,
-  SlHome,
-  SlLayers,
-  SlNote,
-  SlUserFollowing,
-} from 'react-icons/sl';
-import { Logo } from '../index';
+import { Logo, Icon } from '../index';
+import data from '../../data.json';
 import './sidebar.css';
 
 function Sidebar() {
-  const data = [
-    { url: '#home', title: 'home', icon: <SlHome /> },
-    { url: '#about', title: 'about', icon: <SlUserFollowing /> },
-    { url: '#services', title: 'services', icon: <SlBriefcase /> },
-    { url: '#resume', title: 'resume', icon: <SlGraduation /> },
-    { url: '#projects', title: 'projects', icon: <SlLayers /> },
-    { url: '#blog', title: 'blog', icon: <SlNote /> },
-    { url: '#contact', title: 'contact', icon: <SlBubble /> },
-    { url: '/', title: 'Home', icon: <SlEqualizer /> },
-  ];
-
   return (
     <aside className="aside">
       <a href="#home" className="nav__logo">
@@ -32,10 +12,10 @@ function Sidebar() {
       <nav className="nav">
         <div className="nav__menu">
           <ul className="nav__list">
-            {data.map(({ url, title, icon }) => (
+            {data.sidebar.map(({ url, title, icon }) => (
               <li className="nav__item" key={`nav-${title}`}>
                 <a href={url} className="nav__link" title={title.toUpperCase()}>
-                  {icon}
+                  <Icon icon={icon} type="sl" />
                 </a>
               </li>
             ))}

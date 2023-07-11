@@ -1,8 +1,6 @@
-import './home.css';
+import { HeaderSocials, ScrollDown, Shapes } from '../../components';
 import Me from '../../assets/avatar.png';
-import HeaderSocials from '../../components/HeaderSocials';
-import ScrollDown from '../../components/ScrollDown';
-import Shapes from '../../components/Shapes';
+import './home.css';
 
 function Home() {
   return (

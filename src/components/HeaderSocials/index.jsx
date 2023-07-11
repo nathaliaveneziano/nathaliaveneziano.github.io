@@ -1,36 +1,19 @@
-import { FaFacebookF, FaInstagram, FaTwitter } from 'react-icons/fa6';
+import data from '../../data.json';
+import Icon from '../Icon';
 import './headerSocials.css';
 
 function HeaderSocials() {
-  const links = [
-    {
-      url: 'https://www.instagram.com/nathalia.veneziano.developer/',
-      title: 'instagram',
-      icon: <FaInstagram />,
-    },
-    {
-      url: 'https://twitter.com/nath_veneziano',
-      title: 'twitter',
-      icon: <FaTwitter />,
-    },
-    {
-      url: 'https://www.facebook.com/nathalia.veneziano.developer',
-      title: 'facebook',
-      icon: <FaFacebookF />,
-    },
-  ];
-
   return (
     <div className="home__socials">
-      {links.map((link) => (
+      {data.socialMedia.map(({ url, title, icon }) => (
         <a
-          href={link.url}
+          href={url}
           className="home__social-link"
           target="_blank"
-          title={link.title.toUpperCase()}
-          key={`nav-${link.title}`}
+          title={title.toUpperCase()}
+          key={`nav-${title}`}
           rel="noreferrer">
-          {link.icon}
+          <Icon icon={icon} type="fa6" />
         </a>
       ))}
     </div>

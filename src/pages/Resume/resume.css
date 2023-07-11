@@ -1,0 +1,18 @@
+.resume__container {
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.875rem;
+}
+
+.timeline {
+  background-color: var(--container-color);
+  padding: 1.875rem;
+  border-radius: var(--border-radius);
+  position: relative;
+  box-shadow: var(--shadow);
+}
+
+@media screen and (max-width: 767px) {
+  .resume__container {
+    grid-template-columns: 12fr;
+  }
+}
