@@ -12,7 +12,7 @@ import { Logo } from '../index';
 import './sidebar.css';
 
 function Sidebar() {
-  const links = [
+  const data = [
     { url: '#home', title: 'home', icon: <SlHome /> },
     { url: '#about', title: 'about', icon: <SlUserFollowing /> },
     { url: '#services', title: 'services', icon: <SlBriefcase /> },
@@ -32,13 +32,10 @@ function Sidebar() {
       <nav className="nav">
         <div className="nav__menu">
           <ul className="nav__list">
-            {links.map((link) => (
-              <li className="nav__item" key={`nav-${link.title}`}>
-                <a
-                  href={link.url}
-                  className="nav__link"
-                  title={link.title.toUpperCase()}>
-                  {link.icon}
+            {data.map(({ url, title, icon }) => (
+              <li className="nav__item" key={`nav-${title}`}>
+                <a href={url} className="nav__link" title={title.toUpperCase()}>
+                  {icon}
                 </a>
               </li>
             ))}

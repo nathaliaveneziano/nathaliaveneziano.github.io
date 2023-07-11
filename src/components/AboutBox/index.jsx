@@ -2,7 +2,7 @@ import { SlBadge, SlCup, SlFire, SlPeople } from 'react-icons/sl';
 import './aboutBox.css';
 
 function AboutBox() {
-  const infos = [
+  const data = [
     {
       icon: <SlFire className="about__icon" />,
       title: '198',
@@ -26,13 +26,13 @@ function AboutBox() {
   ];
   return (
     <div className="about__boxes grid">
-      {infos.map((info, index) => (
+      {data.map(({ icon, title, subtitle }, index) => (
         <div className="about__box" key={`about-${index}`}>
-          {info.icon}
+          {icon}
 
           <div>
-            <h3 className="about__title">{info.title}</h3>
-            <span className="about__subtitle">{info.subtitle}</span>
+            <h3 className="about__title">{title}</h3>
+            <span className="about__subtitle">{subtitle}</span>
           </div>
         </div>
       ))}
