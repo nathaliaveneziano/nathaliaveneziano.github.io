@@ -1,6 +1,6 @@
-import './shapes.css';
+import './headerShapes.css';
 
-function Shape() {
+function HeaderShapes() {
   return (
     <div className="shapes">
       <svg
@@ -25,4 +25,4 @@ function Shape() {
   );
 }
 
-export default Shape;
+export default HeaderShapes;

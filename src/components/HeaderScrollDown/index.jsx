@@ -1,6 +1,6 @@
-import './scrollDown.css';
+import './headerScrollDown.css';
 
-function ScrollDown() {
+function HeaderScrollDown() {
   return (
     <div className="scroll__down">
       <a href="#about" className="mouse__wrapper">
@@ -13,4 +13,4 @@ function ScrollDown() {
   );
 }
 
-export default ScrollDown;
+export default HeaderScrollDown;

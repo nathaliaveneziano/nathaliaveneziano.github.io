@@ -1,13 +1,23 @@
-import * as iconsSL from 'react-icons/sl';
 import * as iconFA6 from 'react-icons/fa6';
+import * as iconSI from 'react-icons/si';
+import * as iconsSL from 'react-icons/sl';
 
-function Icon({ icon, type }) {
+function Icon({ icon, typeIcon }) {
   let IconComponent = '';
 
-  if (type === 'sl') {
-    IconComponent = iconsSL[icon];
-  } else if (type === 'fa6') {
-    IconComponent = iconFA6[icon];
+  switch (typeIcon) {
+    case 'fa6':
+      IconComponent = iconFA6[icon];
+      break;
+    case 'si':
+      IconComponent = iconSI[icon];
+      break;
+    case 'sl':
+      IconComponent = iconsSL[icon];
+      break;
+
+    default:
+      break;
   }
 
   return <IconComponent />;

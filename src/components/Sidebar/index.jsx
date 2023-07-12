@@ -1,5 +1,5 @@
+import data from '../../data';
 import { Logo, Icon } from '../index';
-import data from '../../data.json';
 import './sidebar.css';
 
 function Sidebar() {
@@ -15,7 +15,7 @@ function Sidebar() {
             {data.sidebar.map(({ url, title, icon }) => (
               <li className="nav__item" key={`nav-${title}`}>
                 <a href={url} className="nav__link" title={title.toUpperCase()}>
-                  <Icon icon={icon} type="sl" />
+                  <Icon icon={icon} typeIcon="sl" />
                 </a>
               </li>
             ))}

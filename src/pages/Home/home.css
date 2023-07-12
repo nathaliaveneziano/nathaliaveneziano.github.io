@@ -22,3 +22,21 @@
   font-weight: var(--font-bold);
   margin-bottom: 0.5rem;
 }
+
+.home__socials {
+  display: flex;
+  column-gap: 1.75rem;
+  align-items: center;
+  justify-content: center;
+  margin: 1.5rem 0;
+}
+
+.home__social-link {
+  color: var(--title-color);
+  font-size: 1.3rem;
+  transition: 0.3s;
+}
+
+.home__social-link:hover {
+  color: #ffd15c;
+}

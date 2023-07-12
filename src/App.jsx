@@ -4,6 +4,7 @@ import {
   Services,
   Resume,
   Portfolio,
+  Projects,
   Testimonials,
   Blog,
   Contact,
@@ -21,6 +22,7 @@ function App() {
         <Services />
         <Resume />
         <Portfolio />
+        <Projects />
         <Testimonials />
         <Blog />
         <Contact />

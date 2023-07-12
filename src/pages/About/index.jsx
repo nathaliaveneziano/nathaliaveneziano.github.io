@@ -1,8 +1,11 @@
+import { Me } from '../../assets';
+import { AboutBox, AboutSkills } from '../../components';
+import data from '../../data';
 import './about.css';
-import Me from '../../assets/avatar-2.svg';
-import AboutBox from '../../components/AboutBox';
 
 function About() {
+  const { skills, boxes } = data.about;
+
   return (
     <section className="about container section" id="about">
       <h2 className="section__title">Sobre mim</h2>
@@ -23,43 +26,20 @@ function About() {
           </div>
 
           <div className="about__skills grid">
-            <div className="skills__data">
-              <div className="skills__titles">
-                <h3 className="skills__name">Development</h3>
-                <span className="skills__number">90%</span>
-              </div>
-
-              <div className="skills__bar">
-                <span className="skills__percentage development"></span>
-              </div>
-            </div>
-
-            <div className="skills__data">
-              <div className="skills__titles">
-                <h3 className="skills__name">UI/UX design</h3>
-                <span className="skills__number">80%</span>
-              </div>
-
-              <div className="skills__bar">
-                <span className="skills__percentage ui__design"></span>
-              </div>
-            </div>
-
-            <div className="skills__data">
-              <div className="skills__titles">
-                <h3 className="skills__name">Photography</h3>
-                <span className="skills__number">60%</span>
-              </div>
-
-              <div className="skills__bar">
-                <span className="skills__percentage photography"></span>
-              </div>
-            </div>
+            {skills.map(({ id, name, number, newClass }) => (
+              <AboutSkills
+                id={id}
+                name={name}
+                number={number}
+                newClass={newClass}
+                key={`skills-${id}`}
+              />
+            ))}
           </div>
         </div>
       </div>
 
-      <AboutBox />
+      <AboutBox data={boxes} />
     </section>
   );
 }
