@@ -20,7 +20,7 @@ function Icon({ icon, typeIcon }) {
       break;
   }
 
-  return <IconComponent />;
+  return <IconComponent className={icon} />;
 }
 
 export default Icon;

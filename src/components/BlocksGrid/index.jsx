@@ -1,10 +1,10 @@
-import { RepoCard } from '../index';
-import './repoGrid.css';
+import { BlocksCard } from '../index';
+import './blocksGrid.css';
 
-function RepoGrid({ data }) {
+function BlocksGrid({ data, className }) {
   return (
-    <div className="repo__container">
-      <div className="grid">
+    <div className="blocks__container">
+      <div className={`grid ${className || ''}`}>
         {data.map(
           ({
             id,
@@ -12,16 +12,20 @@ function RepoGrid({ data }) {
             category,
             image,
             techs = [],
+            date = '',
+            author = '',
             url = '',
             url_github = '',
             url_preview = '',
           }) => (
-            <RepoCard
+            <BlocksCard
               id={id}
               title={title}
               category={category}
               image={image}
               techs={techs}
+              date={date}
+              author={author}
               url={url}
               url_github={url_github}
               url_preview={url_preview}
@@ -34,4 +38,4 @@ function RepoGrid({ data }) {
   );
 }
 
-export default RepoGrid;
+export default BlocksGrid;

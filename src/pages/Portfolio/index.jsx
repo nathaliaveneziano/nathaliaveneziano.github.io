@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { RepoFilter, RepoGrid } from '../../components';
+import { RepoFilter, BlocksGrid } from '../../components';
 import data from '../../data';
 import './portfolio.css';
 
@@ -26,7 +26,7 @@ function Portfolio() {
       <h2 className="section__title">Portfólio</h2>
 
       <RepoFilter filters={filters} callback={filterItem} />
-      <RepoGrid data={items} />
+      <BlocksGrid data={items} />
     </section>
   );
 }

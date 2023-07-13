@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { RepoFilter, RepoGrid } from '../../components';
+import { RepoFilter, BlocksGrid } from '../../components';
 import data from '../../data';
 import './projects.css';
 
@@ -28,7 +28,7 @@ function Projects() {
       <h2 className="section__title">Projetos Recentes</h2>
 
       <RepoFilter filters={filters} callback={filterItem} />
-      <RepoGrid data={items} />
+      <BlocksGrid data={items} className='no-hover' />
     </section>
   );
 }

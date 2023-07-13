@@ -1,45 +1,45 @@
-.repo__container {
+.blocks__container {
   overflow-y: auto;
   position: relative;
   padding-right: 0.5rem;
   padding-bottom: 1rem;
 }
 
-.repo__container::-webkit-scrollbar {
+.blocks__container::-webkit-scrollbar {
   width: 0.5rem;
 }
 
-.repo__container::-webkit-scrollbar-track {
+.blocks__container::-webkit-scrollbar-track {
   background-color: #dedeea;
   border-radius: 1rem;
 }
 
-.repo__container::-webkit-scrollbar-thumb {
+.blocks__container::-webkit-scrollbar-thumb {
   border-radius: 1rem;
   background-color: var(--first-color);
 }
 
-.repo__container .grid {
+.blocks__container .grid {
   grid-template-columns: repeat(3, 1fr);
   gap: 1.875rem;
 }
 
 @media screen and (max-width: 1199px) {
-  .repo__container {
+  .blocks__container {
     height: 57vh;
   }
 
-  .repo__container .grid {
+  .blocks__container .grid {
     grid-template-columns: repeat(2, 1fr);
   }
 }
 
 @media screen and (max-width: 767px) {
-  .repo__container {
+  .blocks__container {
     height: 38vh;
   }
 
-  .repo__container .grid {
+  .blocks__container .grid {
     grid-template-columns: 12fr;
   }
 }
