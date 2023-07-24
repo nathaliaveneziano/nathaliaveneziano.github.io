@@ -1,17 +1,24 @@
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import { RepoFilter, BlocksGrid } from '../../components';
-import data from '../../data';
-import './portfolio.css';
+import DataContext from '../../services/DataContext';
+import { styled } from 'styled-components';
+import { SectionTitle, container, section } from '../../globalStyles';
+
+const PortfolioContainer = styled.section`
+  ${container}
+  ${section}
+`;
 
 function Portfolio() {
-  const [items, setItems] = useState(data.portfolio);
+  const { portfolio } = useContext(DataContext);
+  const [items, setItems] = useState(portfolio);
   const filters = [
     'Todos',
-    ...new Set(data.portfolio.map((filter) => filter.category)),
+    ...new Set(portfolio.map((filter) => filter.category)),
   ];
 
   const filterItem = (filterItem) => {
-    const updatedItems = data.portfolio.filter((elem) => {
+    const updatedItems = portfolio.filter((elem) => {
       if (filterItem === 'Todos') {
         return elem;
       }
@@ -22,12 +29,12 @@ function Portfolio() {
   };
 
   return (
-    <section className="work container section" id="work">
-      <h2 className="section__title">Portfólio</h2>
+    <PortfolioContainer id="work">
+      <SectionTitle>Portfólio</SectionTitle>
 
       <RepoFilter filters={filters} callback={filterItem} />
       <BlocksGrid data={items} />
-    </section>
+    </PortfolioContainer>
   );
 }
 

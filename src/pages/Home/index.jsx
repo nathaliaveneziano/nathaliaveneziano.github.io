@@ -1,33 +1,61 @@
+import { useContext } from 'react';
+import { styled } from 'styled-components';
 import { Me } from '../../assets';
 import {
-  HeaderSocials,
   HeaderScrollDown,
   HeaderShapes,
+  HeaderSocials,
 } from '../../components';
-import data from '../../data';
-import './home.css';
+import { Button, container } from '../../globalStyles';
+import DataContext from '../../services/DataContext';
+
+const HomeComponent = styled.section`
+  ${container}
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+
+const Intro = styled.div`
+  max-width: 540px;
+  text-align: center;
+`;
+
+const HomeImg = styled.img`
+  margin-bottom: 1.5rem;
+  -webkit-filter: drop-shadow(5px 5px 5px rgba(0, 0, 0, 0.1));
+  filter: drop-shadow(5px 5px 5px rgba(0, 0, 0, 0.1));
+`;
+
+const HomeName = styled.h1`
+  font-size: var(--h1-font-size);
+  font-weight: var(--font-bold);
+  margin-bottom: 0.5rem;
+`;
 
 function Home() {
-  const { socialMedia } = data;
+  const { social } = useContext(DataContext);
 
   return (
     <>
       <HeaderShapes />
-      <section className="home container" id="home">
-        <div className="intro">
-          <img src={Me} alt="" className="home__img" />
-          <h1 className="home__name">Nathália Veneziano</h1>
+      <HomeComponent id="home">
+        <Intro>
+          <HomeImg src={Me} alt="" />
+          <HomeName>Nathália Veneziano</HomeName>
           <span className="home__education">Desenvolvedora Front-end</span>
 
-          <HeaderSocials data={socialMedia} />
+          <HeaderSocials data={social} />
 
-          <a href="#contact" className="btn">
+          <Button href="#contact" className="btn">
             Entre em contato
-          </a>
+          </Button>
 
           <HeaderScrollDown />
-        </div>
-      </section>
+        </Intro>
+      </HomeComponent>
     </>
   );
 }

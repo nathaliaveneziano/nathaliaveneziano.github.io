@@ -1,32 +1,98 @@
-import data from '../../data';
+import PropTypes from 'prop-types';
+import { useContext } from 'react';
+import { styled } from 'styled-components';
 import { Logo, Icon } from '../index';
-import './sidebar.css';
+import DataContext from '../../services/DataContext';
 
-function Sidebar() {
+const Aside = styled.aside`
+  position: fixed;
+  left: 0;
+  top: 0;
+  background: var(--body-color);
+  border-right: 1px solid rgba(0, 0, 0, 0.05);
+  padding: 2.5rem;
+  width: 110px;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  z-index: 10;
+`;
+
+const NavList = styled.ul`
+  display: flex;
+  flex-direction: column;
+  row-gap: 1rem;
+`;
+
+const NavLink = styled.a`
+  font-size: 1.5rem;
+  color: var(--title-color);
+  font-weight: var(--font-bold);
+  transition: 0.3s;
+
+  &:hover {
+    color: hsl(43, 100%, 68%);
+  }
+`;
+
+const Copyright = styled.span`
+  color: hsl(245, 15%, 65%);
+  font-size: var(--small-font-size);
+  transform: rotate(-180deg);
+  writing-mode: vertical-rl;
+`;
+
+Sidebar.propTypes = {
+  callback: PropTypes.func,
+};
+
+function Sidebar({ callback }) {
+  const data = useContext(DataContext);
+  let menu = [];
+
+  menu = data.sidebar.filter(
+    ({ title }) =>
+      !data[title] ||
+      data[title].length > 0 ||
+      (title === 'resume' && Object.keys(data[title]) > 0)
+  );
+
+  if (menu.length > 0) {
+    menu.push({
+      id: 8,
+      title: 'config',
+      icon: 'SlEqualizer',
+      url: '',
+      callback: callback,
+    });
+  }
+
   return (
-    <aside className="aside">
+    <Aside>
       <a href="#home" className="nav__logo">
         <Logo />
       </a>
 
-      <nav className="nav">
-        <div className="nav__menu">
-          <ul className="nav__list">
-            {data.sidebar.map(({ url, title, icon }) => (
-              <li className="nav__item" key={`nav-${title}`}>
-                <a href={url} className="nav__link" title={title.toUpperCase()}>
-                  <Icon icon={icon} typeIcon="sl" />
-                </a>
+      <nav>
+        <NavList>
+          {menu &&
+            menu.map(({ id, url, title, icon, callback }) => (
+              <li key={id}>
+                <NavLink
+                  href={url}
+                  title={title.toUpperCase()}
+                  onClick={callback}>
+                  <Icon img={icon} typeIcon="sl" />
+                </NavLink>
               </li>
             ))}
-          </ul>
-        </div>
+        </NavList>
       </nav>
 
-      <div className="nav__footer">
-        <span className="copyright">&copy; 2023</span>
-      </div>
-    </aside>
+      <Copyright>&copy; 2023</Copyright>
+    </Aside>
   );
 }
 

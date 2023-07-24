@@ -1,30 +1,64 @@
+import { useContext } from 'react';
+import { styled } from 'styled-components';
 import { ResumeCard } from '../../components';
-import data from '../../data';
-import './resume.css';
+import { SectionTitle, container, grid, section } from '../../globalStyles';
+import DataContext from '../../services/DataContext';
+
+const ResumeContainer = styled.section`
+  ${container}
+  ${section}
+`;
+
+const ResumeGrid = styled.div`
+  ${grid}
+  gap: 1.875rem;
+`;
+
+const Timeline = styled.div`
+  ${grid}
+  background-color: var(--container-color);
+  padding: 1.875rem;
+  border-radius: var(--border-radius);
+  position: relative;
+  box-shadow: var(--shadow);
+`;
 
 function Resume() {
+  const data = useContext(DataContext);
   const { resume } = data;
+  const categories = Object.keys(resume);
+
+  function captilizeTitle(title) {
+    return title.charAt(0).toUpperCase() + title.slice(1);
+  }
 
   return (
-    <section className="resume container section" id="resume">
-      <h2 className="section__title">Experience</h2>
+    <>
+      {categories.map((value, index) => (
+        <ResumeContainer id="resume" key={index}>
+          <SectionTitle>{captilizeTitle(value)}</SectionTitle>
 
-      <div className="resume__container grid">
-        {resume.categories.map((value) => (
-          <div className="timeline grid" key={`resume-${value}`}>
-            {resume[value].map(({ id, icon, year, title, desc }) => (
-              <ResumeCard
-                key={`${value}-${id}`}
-                icon={{ icon: icon, type: 'sl' }}
-                year={year}
-                title={title}
-                desc={desc}
-              />
-            ))}
-          </div>
-        ))}
-      </div>
-    </section>
+          <ResumeGrid>
+            <Timeline key={`resume-${value}`}>
+              {resume[value].map(({ id, year, title, desc, organization }) => (
+                <ResumeCard
+                  key={id}
+                  icon={{
+                    icon:
+                      value === 'education' ? 'SlGraduation' : 'SlBriefcase',
+                    type: 'sl',
+                  }}
+                  year={year}
+                  title={title}
+                  desc={desc}
+                  organization={organization}
+                />
+              ))}
+            </Timeline>
+          </ResumeGrid>
+        </ResumeContainer>
+      ))}
+    </>
   );
 }
 

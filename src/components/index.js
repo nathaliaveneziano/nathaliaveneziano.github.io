@@ -11,6 +11,7 @@ import RepoFilter from './RepoFilter';
 import ResumeCard from './ResumeCard';
 import ServiceCard from './ServiceCard';
 import Sidebar from './Sidebar';
+import ThemeCustomizer from './ThemeCustomizer';
 
 export {
   AboutBox,
@@ -26,4 +27,5 @@ export {
   ResumeCard,
   ServiceCard,
   Sidebar,
+  ThemeCustomizer,
 };

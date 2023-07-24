@@ -1,17 +1,24 @@
-import { useState } from 'react';
+import { useContext, useState } from 'react';
+import { styled } from 'styled-components';
 import { RepoFilter, BlocksGrid } from '../../components';
-import data from '../../data';
-import './projects.css';
+import { SectionTitle, container, section } from '../../globalStyles';
+import DataContext from '../../services/DataContext';
+
+const ProjectsContainer = styled.section`
+  ${container}
+  ${section}
+`;
 
 function Projects() {
-  const [items, setItems] = useState(data.projects);
+  const { projects } = useContext(DataContext);
+  const [items, setItems] = useState(projects);
   const filters = [
     'Todos',
-    ...new Set(data.projects.map((filter) => filter.category)),
+    ...new Set(projects.map((filter) => filter.category)),
   ];
 
   const filterItem = (filterItem) => {
-    const updatedItems = data.projects.filter((elem) => {
+    const updatedItems = projects.filter((elem) => {
       if (filterItem === 'Todos') {
         return elem;
       }
@@ -24,12 +31,12 @@ function Projects() {
   };
 
   return (
-    <section className="projects container section" id="projects">
-      <h2 className="section__title">Projetos Recentes</h2>
+    <ProjectsContainer id="projects">
+      <SectionTitle>Projetos Recentes</SectionTitle>
 
       <RepoFilter filters={filters} callback={filterItem} />
-      <BlocksGrid data={items} className='no-hover' />
-    </section>
+      <BlocksGrid data={items} className="no-hover" />
+    </ProjectsContainer>
   );
 }
 

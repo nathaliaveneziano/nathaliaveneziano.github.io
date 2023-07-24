@@ -1,46 +1,119 @@
+import { styled } from 'styled-components';
 import { Me } from '../../assets';
+import PDF from '../../assets/file/curriculo.pdf';
 import { AboutBox, AboutSkills } from '../../components';
-import data from '../../data';
-import './about.css';
+import {
+  Button,
+  SectionTitle,
+  container,
+  grid,
+  section,
+} from '../../globalStyles';
+
+const AboutComponent = styled.section`
+  ${container}
+  ${section}
+`;
+
+const AboutContainer = styled.div`
+  ${grid}
+  grid-template-columns: 3fr 9fr;
+  gap: 1.875rem;
+
+  @media screen and (max-width: 767px) {
+    grid-template-columns: 12fr;
+  }
+`;
+
+const AboutImg = styled.img`
+  -webkit-filter: drop-shadow(5px 5px 5px rgba(0, 0, 0, 0.1));
+  filter: drop-shadow(5px 5px 5px rgba(0, 0, 0, 0.1));
+
+  @media screen and (max-width: 767px) {
+    margin: 0 auto;
+  }
+`;
+
+const AboutData = styled.div`
+  ${grid}
+  padding: 1.8rem;
+  background-color: var(--container-color);
+  box-shadow: var(--shadow);
+  border-radius: var(--border-radius);
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.875rem;
+  align-items: flex-start;
+  position: relative;
+
+  @media screen and (max-width: 767px) {
+    grid-template-columns: 12fr;
+    text-align: center;
+  }
+
+  &::before {
+    content: '';
+    width: 0;
+    height: 0;
+    border-top: 10px solid transparent;
+    border-bottom: 10px solid transparent;
+    border-right: 15px solid var(--container-color);
+    position: absolute;
+    left: -0.93rem;
+    top: 20%;
+
+    @media screen and (max-width: 767px) {
+      transform: rotate(90deg);
+      left: 50%;
+      top: -18px;
+      margin-left: -7.5px;
+    }
+  }
+`;
+
+const AboutInfo = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 1.875rem;
+`;
+
+const AboutDescription = styled.p`
+  margin-bottom: 1rem;
+  text-align: justify;
+`;
+
+const AboutButton = styled(Button)`
+  text-align: center;
+`;
 
 function About() {
-  const { skills, boxes } = data.about;
-
   return (
-    <section className="about container section" id="about">
-      <h2 className="section__title">Sobre mim</h2>
+    <AboutComponent id="about">
+      <SectionTitle>Sobre mim</SectionTitle>
 
-      <div className="about__container grid">
-        <img src={Me} alt="" className="about__img" />
+      <AboutContainer>
+        <AboutImg src={Me} alt="" className="about__img" />
 
-        <div className="about__data grid">
-          <div className="about__info">
-            <p className="about__description">
-              I am Bolby Doe, web developer from London, United Kingdom. I have
-              rich experience in web site design and building and customization,
-              also I am good at WordPress.
-            </p>
-            <a href="" className="btn">
+        <AboutData>
+          <AboutInfo>
+            <AboutDescription>
+              Desenvolvedora apaixonada pelo desenvolvimento Full Stack e sempre
+              de olho nas tendências. Bacharela em Ciências da Computação e
+              formada em Desenvolvimento Web. Atuei 3 anos como Web Designer, 1
+              ano e meio como suporte.
+            </AboutDescription>
+
+            <AboutButton href={PDF} target="_blank" rel="noreferrer">
               Download CV
-            </a>
-          </div>
+            </AboutButton>
 
-          <div className="about__skills grid">
-            {skills.map(({ id, name, number, newClass }) => (
-              <AboutSkills
-                id={id}
-                name={name}
-                number={number}
-                newClass={newClass}
-                key={`skills-${id}`}
-              />
-            ))}
-          </div>
-        </div>
-      </div>
+            <AboutButton href="#contact">Entre em contato</AboutButton>
+          </AboutInfo>
 
-      <AboutBox data={boxes} />
-    </section>
+          <AboutSkills />
+        </AboutData>
+      </AboutContainer>
+      <AboutBox />
+    </AboutComponent>
   );
 }
 
