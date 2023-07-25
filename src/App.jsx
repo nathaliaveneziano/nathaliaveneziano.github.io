@@ -30,6 +30,10 @@ import { GlobalStyle, themes } from './globalStyles';
 
 const Main = styled.main`
   margin-left: 110px;
+
+  @media screen and (max-width: 767px) {
+    margin-left: 5rem;
+  }
 `;
 
 function App() {

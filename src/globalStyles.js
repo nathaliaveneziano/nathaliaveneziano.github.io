@@ -34,6 +34,17 @@ export const GlobalStyle = createGlobalStyle`
     --border-radius: 20px;
   }
 
+  /* Responsive Typography */
+  @media screen and (max-width: 992px) {
+    :root {
+      --h1-font-size: 1.75rem;
+      --h2-font-size: 1.5rem;
+      --h3-font-size: 1rem;
+      --normal-font-size: 0.938rem;
+      --small-font-size: 0.813rem;
+    }
+  }
+
   /* Base */
   * {
     margin: 0;
@@ -44,6 +55,11 @@ export const GlobalStyle = createGlobalStyle`
   html {
     scroll-behavior: smooth;
     font-size: ${({ theme }) => theme.size};
+    transition: all 0.2s linear;
+  }
+
+  @media screen and (max-width: 767px) {
+    width: 0;
   }
 
   body,

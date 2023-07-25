@@ -17,12 +17,13 @@ const AboutComponent = styled.section`
 
 const AboutContainer = styled.div`
   ${grid}
-  grid-template-columns: 3fr 9fr;
+  /* grid-template-columns: 12fr; */
+  /* grid-template-columns: 3fr 9fr; */
   gap: 1.875rem;
 
-  @media screen and (max-width: 767px) {
+  /* @media screen and (max-width: 767px) {
     grid-template-columns: 12fr;
-  }
+  } */
 `;
 
 const AboutImg = styled.img`
@@ -48,9 +49,10 @@ const AboutData = styled.div`
   @media screen and (max-width: 767px) {
     grid-template-columns: 12fr;
     text-align: center;
+    padding: 0.8rem;
   }
 
-  &::before {
+  /* &::before {
     content: '';
     width: 0;
     height: 0;
@@ -67,7 +69,7 @@ const AboutData = styled.div`
       top: -18px;
       margin-left: -7.5px;
     }
-  }
+  } */
 `;
 
 const AboutInfo = styled.div`
@@ -91,7 +93,7 @@ function About() {
       <SectionTitle>Sobre mim</SectionTitle>
 
       <AboutContainer>
-        <AboutImg src={Me} alt="" className="about__img" />
+        {/* <AboutImg src={Me} alt="" className="about__img" /> */}
 
         <AboutData>
           <AboutInfo>

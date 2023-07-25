@@ -18,6 +18,10 @@ const Aside = styled.aside`
   align-items: center;
   justify-content: space-between;
   z-index: 10;
+
+  @media screen and (max-width: 767px) {
+    width: 0;
+  }
 `;
 
 const NavList = styled.ul`

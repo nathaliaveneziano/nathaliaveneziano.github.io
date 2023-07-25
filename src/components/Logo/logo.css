@@ -1,32 +1,24 @@
-.nav__logo .logo {
-  font-family: var(--logo-font);
-  font-size: 4rem;
+.nav__logo {
+  width: 5rem;
   display: flex;
   position: relative;
   justify-content: center;
   align-items: center;
-  /* text-shadow: 0 0 3px #FF0000; */
-  /* Efeito neon */
-  /* text-shadow: 1px 1px 2px black, 0 0 25px blue, 0 0 5px darkblue; */
-
-  /*Borda ao redor do texto*/
-  /* text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black; */
 }
 
-.nav__logo .logo__letter-left,
-.nav__logo .logo__letter_right {
-  display: flex;
-  height: 2.4rem;
-  line-height: 1rem;
+.nav__logo path {
+  stroke: var(--title-color);
+  stroke-width: 4;
 }
 
-.nav__logo .logo__letter-left {
-  line-height: 0.75rem;
-  z-index: 1;
+@media screen and (max-width: 767px) {
+  .nav__logo {
+    width: 10vw;
+  }
 }
 
-.nav__logo .logo__letter_right {
-  transform: rotate(-180deg);
-  writing-mode: vertical-rl;
-  width: 2.2rem;
+@media screen and (max-width: 434px) {
+  .nav__logo {
+    width: 15vw;
+  }
 }

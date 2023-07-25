@@ -42,17 +42,16 @@ function AboutSkills() {
     <AboutSkillsComponent>
       <AboutTitle>Conhecimentos</AboutTitle>
       <AboutTech>
-        {skills &&
-          skills.map(({ name, slug, icon, background, text }) => (
-            <AboutTechSpan
-              className={`${slug}`}
-              key={`tech-${slug}`}
-              $background={background}
-              $text={text}>
-              <Icon img={icon} typeIcon="si" />
-              {name}
-            </AboutTechSpan>
-          ))}
+        {skills && skills.map(({ name, slug, icon, background, text }) => (
+          <AboutTechSpan
+            className={`${slug}`}
+            key={`tech-${slug}`}
+            $background={background}
+            $text={text}>
+            <Icon img={icon} typeIcon="si" />
+            {name}
+          </AboutTechSpan>
+        ))}
       </AboutTech>
     </AboutSkillsComponent>
   );

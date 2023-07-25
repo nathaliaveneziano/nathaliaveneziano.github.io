@@ -152,14 +152,19 @@
 }
 
 @media only screen and (max-width: 768px) {
+  .customize {
+    left: 5rem;
+    width: calc(100vw - 5rem);
+  }
+
   .customize__card {
-    width: 75vw;
+    width: calc(75vw - 5rem);
   }
 }
 
 @media only screen and (max-width: 576px) {
   .customize__card {
-    width: 96vw;
+    width: calc(96vw - 5rem);
     /* padding: 1rem; */
   }
 }

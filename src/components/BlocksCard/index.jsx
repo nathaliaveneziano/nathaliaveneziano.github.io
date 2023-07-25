@@ -35,7 +35,7 @@ const CardWrapper = styled.div`
   right: 0;
   bottom: 0;
   left: 0;
-  padding: 1.5rem;
+  padding: 0.5rem;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -64,11 +64,10 @@ const CardCategory = styled.span`
 
 const CardTitle = styled.h3`
   color: #fff;
-  font-size: var(--h2-font-size);
-  padding-bottom: 0.98rem;
-  padding-top: 1.25rem;
+  font-size: var(--h3-font-size);
+  /* padding-bottom: 0.98rem; */
+  padding-top: 1.5rem;
   transition: 0.3s;
-  text-shadow: 2px 2px 4px var(--title-color);
   flex: 1;
   opacity: ${(props) => (props.$noHover ? 1 : 0)};
   transform: translateY(${(props) => (props.$noHover ? 0 : '30px')});
