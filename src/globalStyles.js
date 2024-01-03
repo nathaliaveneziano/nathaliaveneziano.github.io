@@ -4,13 +4,18 @@ import DotBG from './assets/svg/dots-bg.svg';
 export const GlobalStyle = createGlobalStyle`
   :root {
     /* Colors */
-    --color-hue: ${({ theme }) => theme.color};
+    /* --color-hue: ${({ theme }) => theme.color}; */
+    --color-hue: ${({ theme }) => theme?.color || themes.colors.red};
     --first-color: hsl(var(--color-hue), 75%, 60%);
     --first-color-opacity: hsla(var(--color-hue), 75%, 60%, 0.5);
     --text-color: hsl(252, 15%, 65%);
-    --title-color: ${({ theme }) => theme.theme.title};
-    --body-color: ${({ theme }) => theme.theme.body};
-    --container-color: ${({ theme }) => theme.theme.container};
+    --text-color-opacity: hsla(252, 15%, 65%,.5);
+    --title-color: ${({ theme }) =>
+      theme?.theme?.title || themes.themeColors.dim.title};
+    --body-color: ${({ theme }) =>
+      theme?.theme?.body || themes.themeColors.dim.body};
+    --container-color: ${({ theme }) =>
+      theme?.theme?.container || themes.themeColors.dim.container};
 
     /* Font and Typography */
     --logo-font: 'Moirai One', cursive;
@@ -38,7 +43,7 @@ export const GlobalStyle = createGlobalStyle`
   @media screen and (max-width: 992px) {
     :root {
       --h1-font-size: 1.75rem;
-      --h2-font-size: 1.5rem;
+      --h2-font-size: 1.25rem;
       --h3-font-size: 1rem;
       --normal-font-size: 0.938rem;
       --small-font-size: 0.813rem;
@@ -200,4 +205,30 @@ export const Button = styled.a`
   }
 `;
 
-// export default GlobalStyle;
+// Form
+
+export const FormDiv = styled.div`
+  position: relative;
+  margin-bottom: 1.875rem;
+  height: 3.75rem;
+`;
+
+export const input = css`
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  box-shadow: var(--shadow);
+  background-color: var(--container-color);
+  color: var(--text-color);
+  border: none;
+  outline: none;
+  border-radius: 1.875rem;
+  padding: 0.625rem 1.875rem;
+  z-index: 1;
+`;
+
+export const FormInput = styled.input`
+  ${input}
+`;

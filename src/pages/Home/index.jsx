@@ -1,62 +1,101 @@
-import { useContext } from 'react';
-import { styled } from 'styled-components';
-import { Me } from '../../assets';
-import {
-  HeaderScrollDown,
-  HeaderShapes,
-  HeaderSocials,
-} from '../../components';
-import { Button, container } from '../../globalStyles';
-import DataContext from '../../services/DataContext';
+// deps
+import { useEffect, useState } from 'react';
+import { ThemeProvider, styled } from 'styled-components';
+// pages
+import Header from '../../components/Home/Header';
+import About from '../../components/Home/About';
+import Projects from '../../components/Home/Projects';
+import Blog from '../../components/Home/Blog';
+import Contact from '../../components/Home/Contact';
+// components
+import Sidebar from '../../components/Sidebar';
+import ThemeCustomizer from '../../components/ThemeCustomizer';
+// sevices
+import db from '../../services/firebase';
+import { getSidebar } from '../../services/queries';
+// styles
+import { GlobalStyle, themes } from '../../globalStyles';
 
-const HomeComponent = styled.section`
-  ${container}
-  position: relative;
-  min-height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-`;
+const Main = styled.main`
+  margin-left: 110px;
 
-const Intro = styled.div`
-  max-width: 540px;
-  text-align: center;
-`;
-
-const HomeImg = styled.img`
-  margin-bottom: 1.5rem;
-  -webkit-filter: drop-shadow(5px 5px 5px rgba(0, 0, 0, 0.1));
-  filter: drop-shadow(5px 5px 5px rgba(0, 0, 0, 0.1));
-`;
-
-const HomeName = styled.h1`
-  font-size: var(--h1-font-size);
-  font-weight: var(--font-bold);
-  margin-bottom: 0.5rem;
+  @media screen and (max-width: 767px) {
+    margin-left: 5rem;
+  }
 `;
 
 function Home() {
-  const { social } = useContext(DataContext);
+  const [loading, setLoading] = useState(false);
+  const [customizer, setCustomizer] = useState(false);
+  const [sidebar, setSidebar] = useState([]);
+  const [size, setSize] = useState('medium');
+  const [color, setColor] = useState('red');
+  const [theme, setTheme] = useState('dim');
+
+  useEffect(() => {
+    async function getSidebarData() {
+      setLoading(true);
+      setSidebar(await getSidebar(db));
+      setLoading(false);
+    }
+
+    getSidebarData();
+  }, []);
+
+  // eslint-disable-next-line no-unused-vars
+  function handleRecaptcha() {
+    document.getElementById('demo-form').submit();
+  }
+
+  function handleThemeCustomizer(event) {
+    event.preventDefault();
+
+    setCustomizer(!customizer);
+  }
 
   return (
-    <>
-      <HeaderShapes />
-      <HomeComponent id="home">
-        <Intro>
-          <HomeImg src={Me} alt="" />
-          <HomeName>Nathália Veneziano</HomeName>
-          <span className="home__education">Desenvolvedora Front-end</span>
-
-          <HeaderSocials data={social} />
-
-          <Button href="#contact" className="btn">
-            Entre em contato
-          </Button>
-
-          <HeaderScrollDown />
-        </Intro>
-      </HomeComponent>
-    </>
+    <ThemeProvider
+      theme={{
+        theme: themes.themeColors[theme],
+        color: themes.colors[color],
+        size: themes.sizes[size],
+      }}>
+      <GlobalStyle />
+      {loading ? (
+        <div>Carregando...</div>
+      ) : (
+        <div id="home">
+          <Sidebar data={sidebar} callback={handleThemeCustomizer} />
+          <Main className="main">
+            <Header />
+            <About />
+            <Projects />
+            <Blog />
+            <Contact />
+          </Main>
+          <form id="demo-form" action="?" method="POST">
+            <input
+              type="submit"
+              className="g-recaptcha"
+              data-sitekey={import.meta.env.VITE_SITEKEY}
+              data-callback="handleRecaptcha"
+              value="Submit"
+            />
+            <br />
+          </form>
+          {customizer ? (
+            <ThemeCustomizer
+              theme={theme}
+              setTheme={setTheme}
+              color={color}
+              setColor={setColor}
+              size={size}
+              setSize={setSize}
+            />
+          ) : null}
+        </div>
+      )}
+    </ThemeProvider>
   );
 }
 

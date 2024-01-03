@@ -8,6 +8,20 @@ export async function getBlog(db) {
   return dbList;
 }
 
+export async function getCategories(db) {
+  const dbCollection = collection(db, 'categories');
+  const dbSnapshot = await getDocs(dbCollection);
+  const dbList = dbSnapshot.docs.map((doc) => doc.data());
+  return dbList;
+}
+
+export async function getBoxes(db) {
+  const dbCollection = collection(db, 'boxes');
+  const dbSnapshot = await getDocs(dbCollection);
+  const dbList = dbSnapshot.docs.map((doc) => doc.data());
+  return dbList;
+}
+
 export async function getEducation(db) {
   const dbCollection = collection(db, 'education');
   const dbOrder = query(dbCollection, orderBy('id', 'desc'));

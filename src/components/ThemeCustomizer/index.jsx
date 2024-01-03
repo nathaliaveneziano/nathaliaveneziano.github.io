@@ -1,4 +1,6 @@
+// deps
 import PropTypes from 'prop-types';
+// styles
 import './themeCustomizer.css';
 
 ThemeCustomizer.propTypes = {
@@ -75,7 +77,7 @@ function ThemeCustomizer({ theme, setTheme, color, setColor, size, setSize }) {
 
   function handleChange(event, callback, slug, element) {
     event.preventDefault();
-    
+
     if (slug !== element) {
       removeClass(event.target);
       const text = event.target.className;

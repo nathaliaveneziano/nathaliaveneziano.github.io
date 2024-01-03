@@ -1,3 +1,4 @@
+// styles
 import './logo.css';
 
 function Logo() {

@@ -1,8 +1,9 @@
+// deps
 import PropTypes from 'prop-types';
-import { useContext } from 'react';
 import { styled } from 'styled-components';
-import { Logo, Icon } from '../index';
-import DataContext from '../../services/DataContext';
+// components
+import Logo from '../Logo';
+import Icon from '../Icon';
 
 const Aside = styled.aside`
   position: fixed;
@@ -49,19 +50,14 @@ const Copyright = styled.span`
 `;
 
 Sidebar.propTypes = {
+  data: PropTypes.array,
   callback: PropTypes.func,
 };
 
-function Sidebar({ callback }) {
-  const data = useContext(DataContext);
+function Sidebar({ data, callback }) {
   let menu = [];
 
-  menu = data.sidebar.filter(
-    ({ title }) =>
-      !data[title] ||
-      data[title].length > 0 ||
-      (title === 'resume' && Object.keys(data[title]) > 0)
-  );
+  menu = data.filter(({ active, title }) => active && title);
 
   if (menu.length > 0) {
     menu.push({
@@ -83,7 +79,7 @@ function Sidebar({ callback }) {
         <NavList>
           {menu &&
             menu.map(({ id, url, title, icon, callback }) => (
-              <li key={id}>
+              <li className={`menu__${title}`} key={id}>
                 <NavLink
                   href={url}
                   title={title.toUpperCase()}
