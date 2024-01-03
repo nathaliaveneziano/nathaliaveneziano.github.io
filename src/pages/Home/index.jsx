@@ -8,13 +8,14 @@ import Projects from '../../components/Home/Projects';
 import Blog from '../../components/Home/Blog';
 import Contact from '../../components/Home/Contact';
 // components
+import Logo from '../../components/Logo';
 import Sidebar from '../../components/Sidebar';
 import ThemeCustomizer from '../../components/ThemeCustomizer';
 // sevices
 import db from '../../services/firebase';
 import { getSidebar } from '../../services/queries';
 // styles
-import { GlobalStyle, themes } from '../../globalStyles';
+import { GlobalStyle, SectionTitle, themes } from '../../globalStyles';
 import ScrollToAnchor from '../../components/Home/ScrollToAnchor';
 
 const Main = styled.main`
@@ -25,8 +26,24 @@ const Main = styled.main`
   }
 `;
 
+const Loading = styled.div`
+  width: 100vw;
+  height: 100vh;
+  background-color: var(--body-color);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 3rem;
+
+  & .nav__logo {
+    width: 25vw;
+    height: auto;
+  }
+`;
+
 function Home() {
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   const [customizer, setCustomizer] = useState(false);
   const [sidebar, setSidebar] = useState([]);
   const [size, setSize] = useState('medium');
@@ -35,7 +52,6 @@ function Home() {
 
   useEffect(() => {
     async function getSidebarData() {
-      setLoading(true);
       setSidebar(await getSidebar(db));
       setLoading(false);
     }
@@ -63,7 +79,12 @@ function Home() {
       }}>
       <GlobalStyle />
       {loading ? (
-        <div>Carregando...</div>
+        <Loading>
+          <div className="nav__logo">
+            <Logo />
+          </div>
+          <SectionTitle>Carregando...</SectionTitle>
+        </Loading>
       ) : (
         <div id="home">
           <ScrollToAnchor />

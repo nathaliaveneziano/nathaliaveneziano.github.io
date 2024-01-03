@@ -4,8 +4,8 @@ import './logo.css';
 function Logo() {
   return (
     <svg
-      width="185"
-      height="91"
+      width="650"
+      height="173"
       viewBox="0 0 185 91"
       fill="none"
       xmlns="http://www.w3.org/2000/svg">
