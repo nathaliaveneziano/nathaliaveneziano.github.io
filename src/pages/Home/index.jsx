@@ -15,6 +15,7 @@ import db from '../../services/firebase';
 import { getSidebar } from '../../services/queries';
 // styles
 import { GlobalStyle, themes } from '../../globalStyles';
+import ScrollToAnchor from '../../components/Home/ScrollToAnchor';
 
 const Main = styled.main`
   margin-left: 110px;
@@ -65,6 +66,7 @@ function Home() {
         <div>Carregando...</div>
       ) : (
         <div id="home">
+          <ScrollToAnchor />
           <Sidebar data={sidebar} callback={handleThemeCustomizer} />
           <Main className="main">
             <Header />
