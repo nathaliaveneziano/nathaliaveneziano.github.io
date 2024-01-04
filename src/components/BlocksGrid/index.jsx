@@ -74,10 +74,12 @@ const CardMask = styled.div`
   width: 100%;
   height: 100%;
   transition: 0.3s;
-  opacity: ${(props) => (props.$noHover ? 0.75 : 0)};
+  /* opacity: ${(props) => (props.$noHover ? 0.75 : 0)}; */
+  opacity: 0.75;
 
   ${CardContainer}:hover & {
-    opacity: ${(props) => (props.$noHover ? 0 : 0.75)};
+    /* opacity: ${(props) => (props.$noHover ? 0 : 0.75)}; */
+    opacity: 0;
   }
 `;
 
@@ -105,28 +107,35 @@ const CardCategory = styled.span`
   display: inline-block;
   padding: 0.19rem 0.625rem;
   transition: 0.3s;
-  opacity: ${(props) => (props.$noHover ? 1 : 0)};
-  transform: translateY(${(props) => (props.$noHover ? 0 : '-40px')});
+  /* opacity: ${(props) => (props.$noHover ? 1 : 0)}; */
+  /* transform: translateY(${(props) => (props.$noHover ? 0 : '-40px')}); */
+  opacity: 1;
+  transform: translateY(0);
 
   ${CardContainer}:hover & {
-    opacity: ${(props) => (props.$noHover ? 0 : 1)};
-    transform: translateY(${(props) => (props.$noHover ? '-40px' : 0)});
+    /* opacity: ${(props) => (props.$noHover ? 0 : 1)}; */
+    /* transform: translateY(${(props) => (props.$noHover ? '-40px' : 0)}); */
+    opacity: 0;
+    transform: translateY(-40px);
   }
 `;
 
 const CardTitle = styled.h3`
   color: #fff;
   font-size: var(--h2-font-size);
-  padding-left: 0.98rem;
-  padding-top: 2rem;
+  padding: 2rem 0.98rem 0.5rem 0.98rem;
   transition: 0.3s;
   flex: 1;
-  opacity: ${(props) => (props.$noHover ? 1 : 0)};
-  transform: translateY(${(props) => (props.$noHover ? 0 : '30px')});
+  /* opacity: ${(props) => (props.$noHover ? 1 : 0)}; */
+  /* transform: translateY(${(props) => (props.$noHover ? 0 : '30px')}); */
+  opacity: 1;
+  transform: translateY(0);
 
   ${CardContainer}:hover & {
-    opacity: ${(props) => (props.$noHover ? 0 : 1)};
-    transform: translateY(${(props) => (props.$noHover ? '30px' : 0)});
+    /* opacity: ${(props) => (props.$noHover ? 0 : 1)}; */
+    /* transform: translateY(${(props) => (props.$noHover ? '30px' : 0)}); */
+    opacity: 0;
+    transform: translateY(30px);
   }
 `;
 
@@ -143,12 +152,14 @@ const CardTechs = styled.div`
   align-items: center;
   justify-content: center;
   gap: 1rem;
-  font-size: var(--h3-font-size);
+  font-size: var(--h2-font-size);
   transition: 0.3s;
-  opacity: ${(props) => (props.$noHover ? 1 : 0)};
+  /* opacity: ${(props) => (props.$noHover ? 1 : 0)}; */
+  opacity: 1;
 
   ${CardContainer}:hover & {
-    opacity: ${(props) => (props.$noHover ? 0 : 1)};
+    /* opacity: ${(props) => (props.$noHover ? 0 : 1)}; */
+    opacity: 0;
   }
 
   & span {
@@ -169,10 +180,18 @@ const CardMeta = styled.div`
   align-items: center;
   justify-content: center;
   transition: 0.3s;
-  opacity: 0;
+  /* opacity: ${(props) => (props.$noHover ? 1 : 0)}; */
+  opacity: 1;
 
   ${CardContainer}:hover & {
-    opacity: ${(props) => (props.$noHover ? 0 : 1)};
+    /* opacity: ${(props) => (props.$noHover ? 0 : 1)}; */
+    opacity: 0;
+  }
+
+  & span a {
+    color: #fff;
+    text-decoration: underline;
+    font-weight: bold;
   }
 `;
 
@@ -183,17 +202,19 @@ const CardDot = styled.span`
 
 const CardButtons = styled.div`
   flex: 1;
+  position: absolute;
+  bottom: 0.5rem;
+  width: 100%;
   display: flex;
   align-items: flex-end;
   justify-content: space-between;
   transform: translateY(100px);
   transition: 0.3s;
-  opacity: ${(props) => (props.$noHover ? 0 : 1)};
-  transform: translateY(${(props) => (props.$noHover ? '100px' : 0)});
+  opacity: 0;
 
   ${CardContainer}:hover & {
-    opacity: ${(props) => (props.$noHover ? 1 : 0)};
-    transform: translateY(${(props) => (props.$noHover ? 0 : '100px')});
+    opacity: 1;
+    transform: translateY(0);
   }
 
   & a {
@@ -201,21 +222,28 @@ const CardButtons = styled.div`
     justify-content: center;
     align-items: center;
     gap: 0.5rem;
+    padding-inline: 1rem;
+  }
+
+  @media screen and (max-width: 1149px) {
+    & {
+      justify-content: center;
+      gap: 1rem;
+    }
+
+    & span {
+      display: none;
+    }
   }
 `;
 
-const CardButton = styled.a`
-  color: #fff;
-  font-size: var(--h3-font-size);
+const CardButton = styled(Button)`
   background-color: #ffd15c;
-  height: 40px;
-  width: 40px;
-  cursor: pointer;
-  border-radius: 50%;
   transition: 0.3s;
   opacity: ${(props) => (props.$noHover ? 1 : 0)};
 
   ${CardContainer}:hover & {
+    transform: translateY(${(props) => (props.$noHover ? '100px' : 0)});
     opacity: ${(props) => (props.$noHover ? 0 : 1)};
   }
 `;
@@ -244,6 +272,10 @@ function BlocksGrid({ data, page, className }) {
       const findCategory = categories.find((category) => category.id === id);
       return findCategory.name;
     }
+  }
+
+  function formattedDate(date) {
+    return new Date(date.seconds * 1000).toLocaleDateString('pt-BR');
   }
 
   return (
@@ -292,57 +324,71 @@ function BlocksGrid({ data, page, className }) {
                         </CardTechs>
                       )}
 
-                      {page === 'blog' && item.date && item.author && (
+                      {page === 'blog' && item.createAt && item.author && (
                         <CardMeta>
-                          <span>{item.date}</span>
+                          <time dateTime={formattedDate(item.createAt)}>
+                            {formattedDate(item.createAt)}
+                          </time>
                           <CardDot>
                             <Icon img="FaCircle" typeIcon="fa6" />
                           </CardDot>
-                          <span>{item.author}</span>
+                          <span>
+                            <a
+                              href={item.authorURI}
+                              target="_blank"
+                              rel="noreferrer">
+                              {item.author}
+                            </a>
+                          </span>
                         </CardMeta>
                       )}
                     </CardContent>
 
-                    <CardButtons $noHover={className}>
+                    <CardButtons $noHover={className} className="card__buttons">
                       {page === 'blog' && item.url && (
                         <CardButton
+                          className="card__button"
                           $noHover={className}
                           href={item.url}
                           target="_blank"
                           rel="noreferrer">
                           <Icon img="SlLink" typeIcon="sl" />
+                          <span>Link</span>
                         </CardButton>
                       )}
 
                       <>
                         {page === 'projects' && item.url_github && (
                           <Button
+                            className="card__button"
                             $noHover={className}
                             href={item.url_github}
                             target="_blank"
                             rel="noreferrer">
                             <Icon img="SiGithub" typeIcon="si" />
-                            Github
+                            <span>Github</span>
                           </Button>
                         )}
                         {page === 'projects' && item.url_figma && (
                           <Button
+                            className="card__button"
                             $noHover={className}
                             href={item.url_figma}
                             target="_blank"
                             rel="noreferrer">
                             <Icon img="SiFigma" typeIcon="si" />
-                            Figma
+                            <span>Figma</span>
                           </Button>
                         )}
                         {page === 'projects' && item.url_preview && (
                           <Button
+                            className="card__button"
                             $noHover={className}
                             href={item.url_preview}
                             target="_blank"
                             rel="noreferrer">
                             <Icon img="FaLaptop" typeIcon="fa6" />
-                            Preview
+                            <span>Preview</span>
                           </Button>
                         )}
                       </>
