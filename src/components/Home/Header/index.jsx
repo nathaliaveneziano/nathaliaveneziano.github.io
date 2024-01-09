@@ -43,7 +43,7 @@ function Header() {
         <Intro>
           <HeaderImg src={Me} alt="" />
           <HeaderName>Nathália Veneziano</HeaderName>
-          <span className="Header__education">Desenvolvedora Front-end</span>
+          <span className="header__education">Desenvolvedora Front-end</span>
 
           <HeaderSocials />
 

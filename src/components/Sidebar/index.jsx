@@ -66,6 +66,7 @@ function Sidebar({ data, callback }) {
       title: 'config',
       icon: 'SlEqualizer',
       url: '',
+      typeIcon: 'sl',
       callback: callback,
     });
   }
@@ -76,19 +77,23 @@ function Sidebar({ data, callback }) {
         <Logo />
       </a>
 
+      {console.log(menu)}
       <nav>
         <NavList>
           {menu &&
-            menu.map(({ id, url, title, icon, callback }) => (
-              <li className={`menu__${title}`} key={id}>
-                <NavLink
-                  href={url}
-                  title={title.toUpperCase()}
-                  onClick={callback}>
-                  <Icon img={icon} typeIcon="sl" />
-                </NavLink>
-              </li>
-            ))}
+            menu.map(
+              ({ url, title, icon, callback, target, typeIcon }, index) => (
+                <li className={`menu__${title}`} key={index}>
+                  <NavLink
+                    target={target}
+                    href={url}
+                    title={title.toUpperCase()}
+                    onClick={callback}>
+                    <Icon img={icon} typeIcon={typeIcon} />
+                  </NavLink>
+                </li>
+              )
+            )}
         </NavList>
       </nav>
 

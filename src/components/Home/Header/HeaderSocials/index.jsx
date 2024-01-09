@@ -40,12 +40,12 @@ function HeaderSocials() {
 
     getSocialData();
   }, []);
-  
+
   return (
     <HomeSocials>
       {social.length > 0 &&
         social.map(
-          ({ url, title, icon, active }) =>
+          ({ url, title, icon, active, typeIcon }) =>
             active && (
               <HomeSocialLink
                 href={url}
@@ -53,7 +53,7 @@ function HeaderSocials() {
                 title={title.toUpperCase()}
                 key={`nav-${title}`}
                 rel="noreferrer">
-                <Icon img={icon} typeIcon="fa6" />
+                <Icon img={icon} typeIcon={typeIcon} />
               </HomeSocialLink>
             )
         )}
