@@ -114,6 +114,7 @@ function Home() {
               setColor={setColor}
               size={size}
               setSize={setSize}
+              setCustomizer={setCustomizer}
             />
           ) : null}
         </div>

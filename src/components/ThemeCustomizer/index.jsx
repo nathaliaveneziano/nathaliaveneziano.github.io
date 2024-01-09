@@ -1,5 +1,7 @@
 // deps
 import PropTypes from 'prop-types';
+import styled from 'styled-components';
+import { FaRegCircleXmark } from 'react-icons/fa6';
 // styles
 import './themeCustomizer.css';
 
@@ -10,9 +12,27 @@ ThemeCustomizer.propTypes = {
   setColor: PropTypes.func,
   size: PropTypes.string,
   setSize: PropTypes.func,
+  setCustomizer: PropTypes.func,
 };
 
-function ThemeCustomizer({ theme, setTheme, color, setColor, size, setSize }) {
+const IconFaX = styled(FaRegCircleXmark)`
+  position: absolute;
+  top: -2.5rem;
+  right: 0;
+  font-size: var(--h1-font-size);
+  color: var(--title-color);
+  cursor: pointer;
+`;
+
+function ThemeCustomizer({
+  theme,
+  setTheme,
+  color,
+  setColor,
+  size,
+  setSize,
+  setCustomizer,
+}) {
   const configTheme = {
     backgrounds: [
       {
@@ -103,6 +123,7 @@ function ThemeCustomizer({ theme, setTheme, color, setColor, size, setSize }) {
   return (
     <div className="customize">
       <div className="customize__card">
+        <IconFaX onClick={() => setCustomizer(false)} />
         <h2>Customize o site</h2>
         <p>Altere o tamanho da fonte, cor e fundo</p>
         {/* <!-- font size --> */}

@@ -1,6 +1,6 @@
 .customize {
   position: fixed;
-  width: calc(100vw - 125px);
+  width: calc(100vw - 100px);
   height: 100vh;
   top: 0;
   left: 110px;
@@ -13,6 +13,7 @@
 }
 
 .customize__card {
+  position: relative;
   background-color: var(--container-color);
   padding: 3rem;
   border-radius: var(--border-radius);

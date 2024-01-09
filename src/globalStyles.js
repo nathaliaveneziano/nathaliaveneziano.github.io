@@ -43,9 +43,9 @@ export const GlobalStyle = createGlobalStyle`
   @media screen and (max-width: 992px) {
     :root {
       --h1-font-size: 1.75rem;
-      --h2-font-size: 1.25rem;
+      --h2-font-size: 1.125rem;
       --h3-font-size: 1rem;
-      --normal-font-size: 0.938rem;
+      --normal-font-size: 0.908rem;
       --small-font-size: 0.813rem;
     }
   }
@@ -55,6 +55,29 @@ export const GlobalStyle = createGlobalStyle`
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    scrollbar-width: thin;
+    scrollbar-color: var(--first-color) transparent;
+  }
+
+  *::-webkit-scrollbar {
+    width: 0.25rem;
+    box-sizing: border-box;
+    padding-left: 0.125rem;
+    background-color: transparent;
+  }
+
+  *:hover::-webkit-scrollbar {
+    width: 0.25rem;
+  }
+
+  *::-webkit-scrollbar-track {
+    background-color: transparent;
+    border-radius: 1rem;
+  }
+
+  *::-webkit-scrollbar-thumb {
+    border-radius: 1rem;
+    background-color: var(--first-color);
   }
   
   html {
@@ -108,6 +131,12 @@ export const GlobalStyle = createGlobalStyle`
     height: auto;
     vertical-align: middle;
   }
+
+  /* Toast */
+  .Toastify__toast-theme--dark {
+  background: var(--body-color);
+  color: var(--text-color);
+}
 `;
 
 /* Theme */
@@ -189,7 +218,7 @@ const ButtonPush = keyframes`
   }
 `;
 
-export const Button = styled.a`
+export const button = css`
   padding: 0.75rem 2rem;
   line-height: 1;
   border-radius: 1.875rem;
@@ -203,6 +232,10 @@ export const Button = styled.a`
   &:hover {
     animation: ${ButtonPush} 0.3s linear 1;
   }
+`;
+
+export const Button = styled.a`
+  ${button}
 `;
 
 // Form

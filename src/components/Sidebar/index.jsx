@@ -10,7 +10,8 @@ const Aside = styled.aside`
   left: 0;
   top: 0;
   background: var(--body-color);
-  border-right: 1px solid rgba(0, 0, 0, 0.05);
+  /* border-right: 1px solid rgba(0, 0, 0, 0.25); */
+  box-shadow: 0 2px 16px rgba(0, 0, 0, 0.25);
   padding: 2.5rem;
   width: 110px;
   min-height: 100vh;
@@ -91,7 +92,7 @@ function Sidebar({ data, callback }) {
         </NavList>
       </nav>
 
-      <Copyright>&copy; 2023</Copyright>
+      <Copyright>&copy; 2024</Copyright>
     </Aside>
   );
 }

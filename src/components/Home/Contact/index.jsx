@@ -1,6 +1,8 @@
 // deps
 import { useEffect, useState } from 'react';
 import { styled } from 'styled-components';
+import emailjs from '@emailjs/browser';
+import { toast } from 'react-toastify';
 // components
 import Icon from '../../Icon';
 // services
@@ -8,7 +10,7 @@ import db from '../../../services/firebase';
 import { getSocial } from '../../../services/queries';
 // styles
 import {
-  Button,
+  button,
   FormDiv,
   FormInput,
   SectionTitle,
@@ -61,15 +63,15 @@ const ContactSocial = styled.a`
   }
 `;
 
-const ContactFormGroup = styled.div`
-  ${grid}
-  grid-template-columns: repeat(2, 1fr);
-  column-gap: 1.5rem;
+// const ContactFormGroup = styled.div`
+//   ${grid}
+//   grid-template-columns: repeat(2, 1fr);
+//   column-gap: 1.5rem;
 
-  @media screen and (max-width: 767px) {
-    grid-template-columns: 12fr;
-  }
-`;
+//   @media screen and (max-width: 767px) {
+//     grid-template-columns: 12fr;
+//   }
+// `;
 
 const ContactFormArea = styled(FormDiv)`
   height: 10.25rem;
@@ -81,8 +83,16 @@ const ContactFormTextarea = styled.textarea`
   padding: 1.625rem 1.875rem;
 `;
 
+const ContactButton = styled.button`
+  ${button};
+`;
+
 function Contact() {
   const [social, setSocial] = useState([]);
+
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [message, setMessage] = useState('');
 
   useEffect(() => {
     async function getSocialData() {
@@ -92,15 +102,54 @@ function Contact() {
     getSocialData();
   }, []);
 
+  const sendEmail = (e) => {
+    e.preventDefault();
+
+    if (name === '' || email === '' || message === '') {
+      toast.warn('Preencha todos os campos!', {
+        position: 'bottom-right',
+      });
+      return;
+    }
+
+    const templateParams = {
+      from_name: name,
+      email,
+      message,
+    };
+
+    emailjs
+      .send(
+        import.meta.env.VITE_EMAILJS_SERVICE,
+        import.meta.env.VITE_EMAILJS_TEMPLATE,
+        templateParams,
+        import.meta.env.VITE_EMAILJS_PUBLIC_KEY
+      )
+      .then(
+        (response) => {
+          toast.success('Email enviado com sucesso! 😍', {
+            position: 'bottom-right',
+          });
+
+          setName('');
+          setEmail('');
+          setMessage('');
+        },
+        (err) => {
+          toast.error('Algo deu errado. Por favor, tente mais tarde!');
+        }
+      );
+  };
+
   return (
     <ContactContainer id="contact">
       <SectionTitle>Contatos</SectionTitle>
 
       <ContactWrapper>
         <div className="contact__info">
-          <ContactTitle>Let&apos;s talk about everthing!</ContactTitle>
+          <ContactTitle>Vamos conversar sobre tudo!</ContactTitle>
           <p className="contact_details">
-            Don&apos;t like forms? Send me an email.
+            Mande-me um e-mail ou me siga nas redes sociais.
           </p>
           <ContactSocialGroup>
             {social.map(({ url, title, icon }, id) => (
@@ -112,27 +161,37 @@ function Contact() {
           </ContactSocialGroup>
         </div>
 
-        <form className="contact__form">
-          <ContactFormGroup>
-            <FormDiv>
-              <FormInput type="text" placeholder="Digite seu nome" />
-            </FormDiv>
-            <FormDiv>
-              <FormInput type="email" placeholder="Digite seu e-mail" />
-            </FormDiv>
-          </ContactFormGroup>
+        <form className="contact__form" onSubmit={sendEmail}>
           <FormDiv>
-            <FormInput type="text" placeholder="Digite um assunto" />
+            <FormInput
+              required
+              type="text"
+              placeholder="Digite seu nome"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+            />
+          </FormDiv>
+          <FormDiv>
+            <FormInput
+              required
+              type="email"
+              placeholder="Digite seu e-mail"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+            />
           </FormDiv>
           <ContactFormArea>
             <ContactFormTextarea
-              name=""
-              id=""
+              required
               cols="30"
               rows="10"
-              placeholder="Escreva sua mensagem"></ContactFormTextarea>
+              placeholder="Escreva sua mensagem"
+              value={message}
+              onChange={(e) =>
+                setMessage(e.target.value)
+              }></ContactFormTextarea>
           </ContactFormArea>
-          <Button type="submit">Enviar Mensagem</Button>
+          <ContactButton type="submit">Enviar Mensagem</ContactButton>
         </form>
       </ContactWrapper>
     </ContactContainer>

@@ -17,28 +17,6 @@ const BlocksContainer = styled.div`
   padding-right: 1rem;
   padding-bottom: 1rem;
   max-height: 57vh;
-  scrollbar-width: thin;
-  scrollbar-color: var(--first-color) var(--body-color);
-
-  &::-webkit-scrollbar {
-    width: 0.25rem;
-    box-sizing: border-box;
-    padding-left: 0.125rem;
-  }
-
-  &:hover::-webkit-scrollbar {
-    width: 0.25rem;
-  }
-
-  &::-webkit-scrollbar-track {
-    background-color: var(--body-color);
-    border-radius: 1rem;
-  }
-
-  &::-webkit-scrollbar-thumb {
-    border-radius: 1rem;
-    background-color: var(--first-color);
-  }
 `;
 
 const BlocksContainerGrid = styled.div`
